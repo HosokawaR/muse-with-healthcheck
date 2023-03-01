@@ -81,6 +81,8 @@ services:
       - SPOTIFY_CLIENT_SECRET=
 ```
 
+If you want to use the healthcheck, see [WITH_HEALTHCHECK.md](WITH_HEALTHCHECK.md).
+
 ### Node.js
 
 **Prerequisites**:
