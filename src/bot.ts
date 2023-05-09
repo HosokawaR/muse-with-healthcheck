@@ -1,4 +1,4 @@
-import {Client, Collection, User} from 'discord.js';
+import {Client, Collection, Status, User} from 'discord.js';
 import {inject, injectable} from 'inversify';
 import ora from 'ora';
 import {TYPES} from './types.js';
@@ -167,6 +167,6 @@ export default class {
   }
 
   public healthCheck(): boolean {
-    return this.client.isReady();
+    return this.client.isReady() && this.client.ws.status === Status.Ready;
   }
 }
