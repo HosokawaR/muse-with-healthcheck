@@ -2,6 +2,8 @@ data
 .DS_Store
 dist
 dts
+muse
+compose.yaml
 
 # Logs
 logs

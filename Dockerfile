@@ -9,6 +9,8 @@ RUN apt-get update \
     tini \
     openssl \
     ca-certificates \
+    curl \
+    git \
     && apt-get autoclean \
     && apt-get autoremove \
     && rm -rf /var/lib/apt/lists/*

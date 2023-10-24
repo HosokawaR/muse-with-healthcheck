@@ -165,4 +165,8 @@ export default class {
     this.client.on('voiceStateUpdate', handleVoiceStateUpdate);
     await this.client.login();
   }
+
+  public healthCheck(): boolean {
+    return this.client.isReady();
+  }
 }

@@ -1,5 +1,6 @@
 import makeDir from 'make-dir';
 import path from 'path';
+import http from 'http';
 import container from './inversify.config.js';
 import {TYPES} from './types.js';
 import Bot from './bot.js';
@@ -19,6 +20,17 @@ const startBot = async () => {
   await container.get<FileCacheProvider>(TYPES.FileCache).cleanup();
 
   await bot.register();
+
+  startHealthCheckServer();
+};
+
+const startHealthCheckServer = () => {
+  const server = http.createServer((_, res) => {
+    const isHealthy = bot.healthCheck();
+    res.writeHead(isHealthy ? 200 : 500);
+    res.end(isHealthy ? 'Healthy' : 'NOT Healthy');
+  });
+  server.listen(8080);
 };
 
 export {startBot};
