@@ -579,12 +579,14 @@ export default class {
       ffmpegInputOptions.push('-to', options.to.toString());
     }
 
+    const baseLoudnessDb = 20;
+
     return this.createReadStream({
       url: ffmpegInput,
       cacheKey: song.url,
       ffmpegInputOptions,
       cache: shouldCacheVideo,
-      volumeAdjustment: format?.loudnessDb ? `${-format.loudnessDb}dB` : undefined,
+      volumeAdjustment: format?.loudnessDb ? `${-format.loudnessDb - baseLoudnessDb}dB` : `${-baseLoudnessDb}dB`,
     });
   }
 
